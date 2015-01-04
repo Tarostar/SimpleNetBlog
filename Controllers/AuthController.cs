@@ -12,13 +12,14 @@ namespace SimpleBlog.Controllers
         // default for  GET
         public ActionResult Login()
         {
-            return View();
+            return View(new AuthLogin { Test = "This is a test value for test set in the controller" });
         }
 
         [HttpPost] // explicitly directs POST here
         public ActionResult Login(AuthLogin form)
         {
-            return Content("Hi there " + form.Username);
+            form.Test = "This is the value set in the post action";
+            return View();
         }
     }
 }

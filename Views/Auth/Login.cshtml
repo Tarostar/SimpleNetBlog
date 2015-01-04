@@ -4,6 +4,11 @@
     ViewBag.Title = "Login";
 }
 
+<p>
+    <!-- // notice the capital M in @Model - this is a special type we can pass in data for in AuthController.cs View -->
+    The value of test in our model, in: @Model.Test
+</p>
+
 @using (Html.BeginForm())
 {
     <div>
