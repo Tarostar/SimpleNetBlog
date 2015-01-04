@@ -12,14 +12,22 @@ namespace SimpleBlog.Controllers
         // default for  GET
         public ActionResult Login()
         {
-            return View(new AuthLogin { Test = "This is a test value for test set in the controller" });
+            return View(new AuthLogin { });
         }
 
         [HttpPost] // explicitly directs POST here
         public ActionResult Login(AuthLogin form)
         {
-            form.Test = "This is the value set in the post action";
-            return View();
+            if (!ModelState.IsValid)
+                return View(form);
+
+            if (form.Username != "Claus")
+            {
+                ModelState.AddModelError("Username", "Username or password isn't correct");
+                return View(form);
+            }
+            
+            return Content("The form is valid");
         }
     }
 }
